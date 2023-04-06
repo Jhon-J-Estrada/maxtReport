@@ -458,6 +458,8 @@ class Frame(tk.Frame):
 
             if dia_fin_de_mes[-2:] == '28':
                 findia = 'fin'
+            if dia_fin_de_mes[-1:] == '1':
+                findia = 'ini'
                 #Inser a la table            
             self.lis_dias.insert('',0,text=r[0], tags=(findia), values=(
                 r[1], r[2], r[3], r[4],r[5],r[6]
@@ -466,7 +468,8 @@ class Frame(tk.Frame):
 
             
 
-        self.lis_dias.tag_configure('fin',foreground='black', background='red')
+        self.lis_dias.tag_configure('fin',foreground='black', background='#FF6E33')
+        self.lis_dias.tag_configure('ini',foreground='black', background='#357')
 
 #--------------------------ACTION ----------------
 #Habilita los campos deacuerdo a la action del User 
@@ -525,7 +528,7 @@ class Frame(tk.Frame):
         self.lis_report()
         self.desabilitar_campos()
 
-        if self.dianame[-2:] == '28':
+        if (self.dianame[-2:] == '28') |  (self.dianame[-1:] == '1'):
             self.report_mes()
 
 #Editar item de la lista de report 
